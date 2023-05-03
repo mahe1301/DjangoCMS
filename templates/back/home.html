@@ -1,0 +1,214 @@
+{% extends 'back/base.html' %}
+{% load static %}
+
+{% block contentblock %}
+
+ <!-- Mini Top Stats Row -->
+ <div class="row">
+
+                            <div class="col-sm-2 col-lg-2">
+                                <!-- Widget -->
+                                <a href="#" class="widget widget-hover-effect1">
+                                    <div class="widget-simple">
+                                        <div class="widget-icon pull-left themed-background animation-fadeIn">
+                                            <i class="fa fa-file-text"></i>
+                                        </div>
+                                        <h3 class="widget-content text-right animation-pullDown">
+                                            {{ oPCount }} <strong>Orders</strong><br>
+                                            <small>Pending</small>
+                                        
+                                            
+                                            
+                                        </h3>
+                                    </div>
+                                </a>
+                                <!-- END Widget -->
+                            </div>
+    
+
+                            <div class="col-sm-3 col-lg-3">
+                                <!-- Widget -->
+                                <a href="#" class="widget widget-hover-effect1">
+                                    <div class="widget-simple">
+                                        <div class="widget-icon pull-left themed-background-autumn animation-fadeIn">
+                                            <i class="fa fa-file-text"></i>
+                                        </div>
+                                        <h3 class="widget-content text-right animation-pullDown">
+                                            {{  oACount }} <strong>Orders</strong><br>
+                                            <small>Approved </small>
+                                            
+                                        </h3>
+                                    </div>
+                                </a>
+                                <!-- END Widget -->
+                            </div>
+                            <div class="col-sm-2 col-lg-2">
+                                <!-- Widget -->
+                                <a href="#" class="widget widget-hover-effect1">
+                                    <div class="widget-simple">
+                                        <div class="widget-icon pull-left themed-background-fire animation-fadeIn">
+                                            <i class="fa fa-file-text"></i>
+                                        </div>
+                                        <h3 class="widget-content text-right animation-pullDown">
+                                            {{  oCCount }}  <strong>Orders</strong><br>
+                                             <small>Cancelled</small>
+                                             
+                                        </h3>
+                                    </div>
+                                </a>
+                                <!-- END Widget -->
+                            </div>
+
+                            <div class="col-sm-2 col-lg-2">
+                                <!-- Widget -->
+                                <a href="#" class="widget widget-hover-effect1">
+                                    <div class="widget-simple">
+                                        <div class="widget-icon pull-left themed-background-spring animation-fadeIn">
+                                            <i class="fa fa-file-text"></i>
+                                        </div>
+                                        <h3 class="widget-content text-right animation-pullDown">
+                                            {{  oDispCount }} <strong>Orders</strong><br>
+                                             <small>Dispatched</small>
+                                             
+                                        </h3>
+                                    </div>
+                                </a>
+                                <!-- END Widget -->
+                            </div>
+                            <div class="col-sm-3 col-lg-3">
+                                <!-- Widget -->
+                                <a href="#" class="widget widget-hover-effect1">
+                                    <div class="widget-simple">
+                                        <div class="widget-icon pull-left themed-background-spring animation-fadeIn">
+                                            <i class="fa fa-file-text"></i>
+                                        </div>
+                                        <h3 class="widget-content text-right animation-pullDown">
+                                            {{  oDeliCount }} <strong>Orders</strong><br>
+                                             <small>Delivered</small>
+                                        </h3>
+                                    </div>
+                                </a>
+                                <!-- END Widget -->
+                            </div>
+                        </div>
+                           
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <!-- Widget -->
+                                <a href="#" class="widget widget-hover-effect1">
+                                    <div class="widget-simple">
+                                        <div class="widget-icon pull-left themed-background animation-fadeIn">
+                                            <i class="gi gi-factory"></i>
+                                        </div>
+                                        <!-- <div class="pull-right">
+                                             Jquery Sparkline (initialized in js/pages/index.js), for more examples you can check out http://omnipotent.net/jquery.sparkline/#s-about
+                                            <span id="mini-chart-brand"></span>
+                                        </div> -->
+                                        <h3 class="widget-content text-right animation-pullDown visible-lg">
+                                           {{ brandCount}} <strong>Brand</strong>
+                                            <!-- <small>Popularity over time</small> -->
+                                        </h3>
+                                    </div>
+                                </a>
+                                <!-- END Widget -->
+                            </div>
+                            <div class="col-sm-4">
+                                <!-- Widget -->
+                                <a href="#" class="widget widget-hover-effect1">
+                                    <div class="widget-simple">
+                                        <div class="widget-icon pull-left themed-background animation-fadeIn">
+                                            <i class="gi gi-shop"></i>
+                                        </div>
+                                        <!-- <div class="pull-right">
+                                             Jquery Sparkline (initialized in js/pages/index.js), for more examples you can check out http://omnipotent.net/jquery.sparkline/#s-about 
+                                            <span id="mini-chart-sales"></span>
+                                        </div> -->
+                                        <h3 class="widget-content text-right animation-pullDown visible-lg">
+                                            {{ productCount}} <strong>Products</strong>
+                                           
+                                        </h3>
+                                    </div>
+                                </a>
+                                <!-- END Widget -->
+                            </div>
+                            <div class="col-sm-4">
+                                <!-- Widget -->
+                                <a href="#" class="widget widget-hover-effect1">
+                                    <div class="widget-simple">
+                                        <div class="widget-icon pull-left themed-background-amethyst animation-fadeIn">
+                                            <i class="gi gi-picture"></i>
+                                        </div>
+                                        <!-- <div class="pull-right">
+                                             Jquery Sparkline (initialized in js/pages/index.js), for more examples you can check out http://omnipotent.net/jquery.sparkline/#s-about 
+                                            <span id="mini-chart-sales"></span>
+                                        </div> -->
+                                        <h3 class="widget-content text-right animation-pullDown visible-lg">
+                                            {{ productImgCount}} <strong>Product Images</strong>
+                                           
+                                        </h3>
+                                    </div>
+                                </a>
+                                <!-- END Widget -->
+                            </div>
+                           
+                        </div>
+                        <div class="row">
+
+
+                            <div class="col-sm-6 col-lg-6">
+                                <!-- Widget -->
+                                <a href="#" class="widget widget-hover-effect1">
+                                    <div class="widget-simple">
+                                        <div class="widget-icon pull-left themed-background-spring animation-fadeIn">
+                                            <i class="gi gi-book_open"></i>
+                                        </div>
+                                        <h3 class="widget-content text-right animation-pullDown">
+                                             <strong>{{subscriberCount}}</strong><br>
+                                            <small>Subscribers</small>
+                                        </h3>
+                                    </div>
+                                </a>
+                                <!-- END Widget -->
+                            </div>
+                            <div class="col-sm-6 col-lg-6">
+                                <!-- Widget -->
+                                <a href="#" class="widget widget-hover-effect1">
+                                    <div class="widget-simple">
+                                        <div class="widget-icon pull-left themed-background-fire animation-fadeIn">
+                                            <i class="gi gi-user"></i>
+                                        </div>
+                                        <h3 class="widget-content text-right animation-pullDown">
+                                            {{registeredUserCount}} <strong>Users</strong>
+                                            <small>Registered</small>
+                                        </h3>
+                                    </div>
+                                </a>
+                                <!-- END Widget -->
+                            </div>
+                            <!-- <div class="col-sm-6 col-lg-3">
+                                Widget 
+                                <a href="#" class="widget widget-hover-effect1">
+                                    <div class="widget-simple">
+                                        <div class="widget-icon pull-left themed-background-amethyst animation-fadeIn">
+                                            <i class="gi gi-picture"></i>
+                                        </div>
+                                        <h3 class="widget-content text-right animation-pullDown">
+                                            +30 <strong>Photos</strong>
+                                            <small>Gallery</small>
+                                        </h3>
+                                    </div>
+                                </a>
+                                END Widget
+                            </div> -->
+
+                        </div>
+<!-- END Mini Top Stats Row -->
+
+{% endblock %}
+
+
+{% block javascriptblock %}
+<!-- Load and execute javascript code used only in this page -->
+<script src="{%static 'back/' %}js/pages/index.js"></script>
+<script>$(function(){ Index.init(); });</script>
+{% endblock %}

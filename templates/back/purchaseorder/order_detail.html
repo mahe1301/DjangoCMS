@@ -1,0 +1,192 @@
+{% extends 'back/base.html' %}
+{% load static %}
+
+{% block contentblock %}
+
+ <!-- Datatables Header -->
+                        <ul class="breadcrumb breadcrumb-top">
+                            <li>Order</li>
+                            <li><a href="/b2n/purchaseorders/detail/{{ pk }}/">Detail</a></li>
+                        </ul>
+                        <!-- END Datatables Header -->
+
+ <!-- END Forms General Header -->
+
+                       <!-- Working Tabs Content -->
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <!-- Default Tabs -->
+                                    <ul class="nav nav-tabs push" data-toggle="tabs">
+                                        <li class="active"><a href="#order-tabs-payment">Payment Info </a></li>
+                                        <li><a href="#order-tabs-product">Product Info</a></li>
+                                        <li><a href="#order-tabs-address">Address Info</a></li>
+
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="order-tabs-payment">
+                                        <form action="#"  class="form-horizontal form-bordered">
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">ID</label>
+                                            <div class="col-md-9">
+                                                <p class="form-control-static">{{ order.id }}</p>
+                                            </div>
+                                        </div>
+                                            <div class="form-group">
+                                            <label class="col-md-3 control-label">Payment Status</label>
+                                            <div class="col-md-9">
+                                                <p class="form-control-static">{{ order.payment_status }}</p>
+                                            </div>
+                                        </div>
+                                            <div class="form-group">
+                                            <label class="col-md-3 control-label">Payment Amount</label>
+                                            <div class="col-md-9">
+                                                <p class="form-control-static">{{ order.payment_amount }}</p>
+                                            </div>
+                                        </div>
+                                             <div class="form-group">
+                                            <label class="col-md-3 control-label">Coupon Code</label>
+                                            <div class="col-md-9">
+                                                <p class="form-control-static">{{ order.coupon_code }}</p>
+                                            </div>
+                                        </div>
+                                             <div class="form-group">
+                                            <label class="col-md-3 control-label">Coupon Amount</label>
+                                            <div class="col-md-9">
+                                                <p class="form-control-static">{{ order.coupon_amount }}</p>
+                                            </div>
+                                        </div>
+                                             <div class="form-group">
+                                            <label class="col-md-3 control-label">User Type</label>
+                                            <div class="col-md-9">
+                                                <p class="form-control-static">{{ order.userType }}</p>
+                                            </div>
+                                        </div>
+                                            <div class="form-group">
+                                            <label class="col-md-3 control-label">User </label>
+                                            <div class="col-md-9">
+                                                <p class="form-control-static">{{ order.user }}</p>
+                                            </div>
+                                        </div>
+                                            <div class="form-group">
+                                            <label class="col-md-3 control-label">Bank reference </label>
+                                            <div class="col-md-9">
+                                                <p class="form-control-static"> {{ order.bank_reference }}</p>
+                                            </div>
+                                        </div>
+                                            <div class="form-group">
+                                            <label class="col-md-3 control-label">Order Created </label>
+                                            <div class="col-md-9">
+                                                <p class="form-control-static"> {{ order.created }}</p>
+                                            </div>
+                                        </div>
+                                            <div class="form-group">
+                                            <label class="col-md-3 control-label">Order Modified </label>
+                                            <div class="col-md-9">
+                                                <p class="form-control-static"> {{ order.modified }}</p>
+                                            </div>
+                                        </div>
+                                        </form>
+                                        </div>
+                                        <div class="tab-pane" id="order-tabs-product">
+                                            <!-- Responsive Full Content -->
+                            <div class="table-responsive">
+                                <table class="table table-vcenter table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Product Name</th>
+                                            <th>Product ID</th>
+                                            <th>Product Quantity</th>
+                                            <th>Actual Amount</th>
+                                            <th>Discount Amount</th>
+                                            <th>Bill Amount</th>
+                                            <th>Transaction Reference</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for pd in products %}
+                                        <tr>
+                                            <td>{{ pd.id }}</td>
+                                            <td>{{ pd.product.name }}</td>
+                                            <td>{{ pd.product.id }}</td>
+                                            <td>{{ pd.quantity }}</td>
+                                            <td>{{ pd.actual_amount }}</td>
+                                            <td>{{ pd.discount_amount }}</td>
+                                            <td>{{ pd.product_bill_amount }}</td>
+                                            <td>{{ pd.description }}</td>
+
+
+                                        </tr>
+                                    {% endfor %}
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- END Responsive Full Content -->
+                                        </div>
+                                        <div class="tab-pane" id="order-tabs-address">
+                                             <form action="#"  class="form-horizontal form-bordered">
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">ID</label>
+                                            <div class="col-md-9">
+                                                <p class="form-control-static">{{ address.id }}</p>
+                                            </div>
+                                        </div>
+                                            <div class="form-group">
+                                            <label class="col-md-3 control-label">First Name</label>
+                                            <div class="col-md-9">
+                                                <p class="form-control-static">{{ address.first_name }}</p>
+                                            </div>
+                                        </div>
+                                            <div class="form-group">
+                                            <label class="col-md-3 control-label">Last Name</label>
+                                            <div class="col-md-9">
+                                                <p class="form-control-static">{{ address.last_name }}</p>
+                                            </div>
+                                        </div>
+                                             <div class="form-group">
+                                            <label class="col-md-3 control-label">Email</label>
+                                            <div class="col-md-9">
+                                                <p class="form-control-static">{{ address.email }}</p>
+                                            </div>
+                                        </div>
+                                             <div class="form-group">
+                                            <label class="col-md-3 control-label">Phone</label>
+                                            <div class="col-md-9">
+                                                <p class="form-control-static">{{ address.phone }}</p>
+                                            </div>
+                                        </div>
+                                             <div class="form-group">
+                                            <label class="col-md-3 control-label">Address</label>
+                                            <div class="col-md-9">
+                                                <p class="form-control-static">{{ address.address1 }}</p>
+                                            </div>
+                                        </div>
+                                            <div class="form-group">
+                                            <label class="col-md-3 control-label">Postal Code </label>
+                                            <div class="col-md-9">
+                                                <p class="form-control-static">{{ address.postal_code }}</p>
+                                            </div>
+                                        </div>
+                                            <div class="form-group">
+                                            <label class="col-md-3 control-label">City </label>
+                                            <div class="col-md-9">
+                                                <p class="form-control-static"> {{ address.city }}</p>
+                                            </div>
+                                        </div>
+
+                                        </form>
+                                        </div>
+                                    </div>
+                                    <!-- END Default Tabs -->
+                                </div>
+                            </div>
+                            <!-- END Working Tabs Content -->
+{% endblock %}
+
+
+{% block javascriptblock %}
+         <!-- Load and execute javascript code used only in this page -->
+<!--        <script src="{%static 'back/' %}js/pages/formsGeneral.js"></script>-->
+<!--        <script>$(function(){ FormsGeneral.init(); });</script>-->
+{% endblock %}

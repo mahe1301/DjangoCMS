@@ -1,0 +1,21 @@
+{% extends 'back/base.html' %}
+{% load static %}
+
+{% block contentblock %}
+
+                        <div class="content-header">
+                            <div class="header-section">
+                                <h1>
+                                    <i class="fa fa-table"></i>Error<br><small>{{ errormsg }}</small>
+                                </h1>
+                            </div>
+                        </div>
+
+{% endblock %}
+
+
+{% block javascriptblock %}
+<!-- Load and execute javascript code used only in this page -->
+<script src="{%static 'back/' %}js/pages/index.js"></script>
+<script>$(function(){ Index.init(); });</script>
+{% endblock %}

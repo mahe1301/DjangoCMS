@@ -1,0 +1,69 @@
+{% extends 'back/base.html' %}
+{% load static %}
+
+{% block contentblock %}
+
+                        <ul class="breadcrumb breadcrumb-top">
+                            <li>Coupons</li>
+                            <li><a href="/b2n/coupon/list">List</a></li>
+                        </ul>
+
+
+                        <!-- Datatables Content -->
+                        <div class="block full">
+                            <div class="block-title">
+                                <h2><strong>Coupon</strong> List</h2>
+                            </div>
+                            <div class="table-responsive">
+                                <table id="example-datatable" class="table table-vcenter table-condensed table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">ID</th>
+                                            <th>Coupon</th>
+                                            <th>Created</th>
+                                            <th>Modified</th>
+                                            <th>Start Date</th>
+                                            <th>End Date</th>
+                                            <th>Disc Percent</th>
+                                            <th>Disc Min Order Amount</th>
+                                            <th>Disc Max Limit</th>
+                                            <th>Is Active</th>
+                                            <th class="text-center">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for cp in coupons %}
+                                        <tr>
+                                            <td class="text-center">{{ cp.id }}</td>
+                                            <td>{{ cp.coupon_code }}</td>
+                                            <td>{{ cp.created }}</td>
+                                            <td>{{ cp.modified }}</td>
+                                            <td>{{ cp.start_date }}</td>
+                                            <td>{{ cp.end_date }}</td>
+                                            <td>{{ cp.disc_percent}}</td>
+                                            <td>{{ cp.disc_min_order_amount }}</td>
+                                            <td>{{ cp.disc_max_limit }}</td>
+                                            <td>{{ cp.isActive }}</td>
+
+                                            <td class="text-center">
+                                                 <div class="btn-group">
+                                                    <a href="{%url 'couponEdit' pk=cp.id %}" data-toggle="tooltip" title="Edit" class="btn btn-xs btn-default"><i class="fa fa-pencil"> Edit</i></a>
+                                                    <a href="{%url 'couponDelete' pk=cp.id %}" data-toggle="tooltip" title="Delete" class="btn btn-xs btn-danger"><i class="fa fa-times"> Delete</i></a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- END Datatables Content -->
+
+{% endblock %}
+
+
+{% block javascriptblock %}
+    <!-- Load and execute javascript code used only in this page -->
+        <script src="{%static 'back/' %}js/pages/tablesDatatables.js"></script>
+        <script>$(function(){ TablesDatatables.init(4); });</script>
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends 'back/base.html' %}
+{% load static %}
+
+{% block contentblock %}
+
+                        <ul class="breadcrumb breadcrumb-top">
+                            <li>Orders</li>
+                            <li><a href="/b2n/trackorders/cancelled_initiated">Initiated Cancellation</a></li>
+                        </ul>
+
+
+                        <!-- Datatables Content -->
+                        <div class="block full">
+                            <div class="block-title">
+                                <h2><strong>Order</strong> List</h2>
+                            </div>
+                            <div class="table-responsive">
+                                <table id="example-datatable" class="table table-vcenter table-condensed table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">ID</th>
+                                            <th>Tracking Reference</th>
+                                            <th>Status</th>
+                                            <th>Comments</th>
+                                            <th>Order Id</th>
+                                             <th>Order Status</th>
+                                            <!-- <th class="text-center">Actions</th> -->
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for to in trackorders %}
+                                        <tr>
+                                            <td class="text-center">{{ to.id }}</td>
+                                            <td>{{ to.tracking_reference }}</td>
+                                            <td>{{ to.status }}</td>
+                                            <td>{{ to.Comments }}</td>
+                                            <td>{{ to.order.id }}</td>
+                                            <td>{{ to.order.payment_status}}</td>
+
+                                            <!-- <td class="text-center">
+                                                <div class="btn-group">
+                                                    <a href="{%url 'trackOrderEdit' pk=to.id %}" data-toggle="tooltip" title="View" class="btn btn-xs btn-default"><i class="fa fa-search"> View</i></a>
+                                                </div>
+                                            </td> -->
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- END Datatables Content -->
+
+{% endblock %}
+
+
+{% block javascriptblock %}
+    <!-- Load and execute javascript code used only in this page -->
+        <script src="{%static 'back/' %}js/pages/tablesDatatables.js"></script>
+        <script>$(function(){ TablesDatatables.init(4); });</script>
+{% endblock %}

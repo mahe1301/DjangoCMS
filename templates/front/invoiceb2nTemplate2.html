@@ -1,0 +1,248 @@
+{% load static %}
+
+<html>
+
+<head>
+    <style>
+        @page {
+            size: a4 portrait;
+
+            @frame header_frame {
+                /* Static Frame */
+                -pdf-frame-content: header_content;
+                left: 50pt;
+                width: 512pt;
+                top: 50pt;
+                /* height: 40pt; */
+            }
+
+            @frame content_frame {
+                /* Content Frame */
+                left: 50pt;
+                width: 512pt;
+                top: 140pt;
+                height: 632pt;
+            }
+
+            @frame footer_frame {
+                /* Another static Frame */
+                -pdf-frame-content: footer_content;
+                left: 50pt;
+                width: 512pt;
+                top: 772pt;
+                height: 20pt;
+            }
+
+            
+        }
+
+        .text-center {
+                text-align:center;
+        }
+
+        .width200 {
+            width:200px;
+        }
+
+        .width150 {
+            width:150px;
+        }
+        .pl70 {
+            padding-left:70px;
+        }
+        .pl30 {
+            padding-left:30px;
+        }
+        .pt10 {
+            padding-top:10px;
+        }
+        .pb10 {
+            padding-bottom:10px;
+        }
+        .pt5 {
+            padding-top:5px;
+        }
+        .pb5 {
+            padding-bottom:5px; 
+        }
+        .bt{
+            border-top: 3px solid black;
+            
+        }
+        .bb{
+            border-bottom: 3px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Content for Static Frame 'header_frame' -->
+    <div id="header_content" >
+      
+
+        <table>
+            <tbody>
+                <tr>
+                    <td class="width150">
+                    <div>
+                       <img width="100" height="50"
+                                src="data:image/jpeg;base64,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"
+                                alt="b2n logo" >
+                                </div>
+        
+                    </td>
+        
+                    <td class="pl30">
+                        <div class="text-center"><strong>BACK TO NATURE</strong></div>
+                        <div class="text-center">Vithayathil Building, Layam Road , Tripunithura- 602301</div>
+                        <div class="text-center">Ph:- 0484-2960643 , Mob:-9495940643</div>
+                        <div class="text-center"><strong>TAX INVOICE</strong></div>
+                    </td>
+                    <td>
+                        <div class="text-center"><strong>GSTN: 32AAVFB6892J1ZS </strong></div>                        
+                       
+                    </td>
+        
+                </tr>
+                
+                <tr>
+                <td>
+                    <div class="text-center">Billed To : <strong> {{ billaddress.first_name}} {{ billaddress.last_name}} - {{ billaddress.phone}}</strong></div>
+                </td>
+                <td>
+                    
+                </td>
+
+                <td>
+                    <div class="pl70">Date :  {{ orderinfo.created|date:'d-m-Y h:i:sA' }}</div>
+                    <div class="pl70">Type :  Online</div>
+                </td>
+
+                </tr>
+                
+        
+            </tbody>
+        </table>
+
+    </div>
+    <!-- Content for Static Frame 'footer_frame' -->
+    <div id="footer_content">(c) - page <pdf:pagenumber>
+            of <pdf:pagecount>
+    </div>
+    <!-- HTML Content -->
+    <table repeat="1">
+        <thead >
+            <tr class="bb bt pt10">
+                <th>SN</th>
+                <th>Rate</th>
+                <th class="width200">Description of Goods/ Service</th>
+                <th>Quantity</th>
+                <th>HSNCode</th>
+                <th>Taxable Amount</th>
+                <th>GST %</th>
+                <th>SGST Amount</th>
+                <th>CGST Amount</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody >
+            {% for item in orderlist %}
+
+            <tr class="pt5 pb5">
+                <td class="text-center">{{ item.id }} </td>
+                <td class="text-center">{{ item.order_item.product_bill_amount}}</td>
+                <td class="text-center width200">{{ item.order_item.product.name }}</td>
+                <td class="text-center">{{ item.order_item.quantity }}</td>
+                <td class="text-center">-</td>
+                <td class="text-center">{{ item.taxableamount }}</td>
+                <td class="text-center">{{ item.order_item.product.gstPercent }}</td>
+            
+                <td class="text-center">{{item.sgst}}</td>
+                <td class="text-center"> {{item.cgst}}</td>
+                
+                <td class="text-center"> 
+                   {{ item.product_total }}
+                </td>
+                
+            </tr>
+            
+            {% endfor %}
+
+            
+    
+        </tbody>
+    </table>
+    <div>
+    
+        <table class="pt10">
+            <tbody>
+                <tr class="bt pt10 pb5">
+                    <td><div class="text-center"><strong>Total SGST</strong></div></td>
+                    <td><div>{{ totalsgst }}</div></td>
+                    <td><div class="text-center"><strong>Total CGST </strong></div></td>
+                    <td><div>{{ totalcgst }}</div></td>
+    
+                    <td><div class="text-center"><strong>Total IGST</strong></div></td>
+                    <td><div>{{ totaligst }}</div></td>
+                    <td></td>
+                    <td></td>
+                   
+    
+                </tr>
+    
+                <tr class="pt5 pb5">
+                    <td><div class="text-center"><strong>Grand Total</strong></div></td>
+                    <td><div>{{ grandtotal }}</div></td>
+                    <td><div class="text-center"><strong>Disount Allowed</strong></div></td>
+                    <td><div>{{ discountallowed }}</div></td>
+    
+                    <td><div class="text-center"><strong>GST Collected </strong></div></td>
+                    <td><div>{{ totalgstcollect }}</div></td>
+                    <td></td>
+                    <td></td>
+    
+                </tr>
+                <tr class="bb pt5 pb5">
+                    <td colspan="6"><div class="text-center"><strong>{{ amountwords }}</strong></div></td>
+                    <td><div class="text-center"><strong>Net Amount </strong></div></td>
+                    <td><div class="text-center"><strong>{{ netamount }}</strong></div></td>
+                </tr>
+                <tr class="pt10 pb5">
+                    <td></td>
+                    <td></td>
+                    <td>Vech No :</td>
+                    <td></td>
+    
+                    <td></td>
+                    <td colspan="2"><div class="text-center"><strong>For BACK 2 NATURE</strong></div></td>
+                   
+                    <td></td>
+    
+                </tr>
+                <tr class="pt5 pb5">
+                    <td></td>
+                    <td></td>
+                    <td>EBN     :</td>
+                    <td></td>
+    
+                    <td></td>
+                    <td colspan="2"><div class="text-center"><strong>Authorised Signatory</strong></div></td>
+                   
+                    <td></td>
+    
+                </tr>
+    
+    
+            </tbody>
+        </table>
+    
+    </div>
+
+   
+                
+       
+
+           
+</body>
+
+</html> 

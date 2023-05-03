@@ -1,0 +1,77 @@
+{% extends 'back/base.html' %}
+{% load static %}
+
+{% block contentblock %}
+
+ <!-- Datatables Header -->
+                        <ul class="breadcrumb breadcrumb-top">
+                            <li>Brands</li>
+                            <li><a href="/b2n/brands/edit/{{ pk }}">Edit</a></li>
+                        </ul>
+                        <!-- END Datatables Header -->
+
+ <!-- END Forms General Header -->
+
+                       <div class="row">
+                            <div class="col-md-12">
+                                <!-- Basic Form Elements Block -->
+                                <div class="block">
+                                    <!-- Basic Form Elements Title -->
+                                    <div class="block-title">
+                                        <div class="block-options pull-right">
+                                            <a href="javascript:void(0)" class="btn btn-alt btn-sm btn-default toggle-bordered enable-tooltip" data-toggle="button" title="Toggles .form-bordered class">No Borders</a>
+                                        </div>
+                                        <h2><strong>Edit</strong> Brand</h2>
+                                    </div>
+                                    <!-- END Form Elements Title -->
+
+                                    <!-- Basic Form Elements Content -->
+                                    <form action="{%url 'brandEdit' pk %}" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label" for="txtName">Name</label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="txtName" name="txtName" class="form-control" placeholder="Enter name " value="{{ brand.name }}"/>
+<!--                                                <span class="help-block">This is a help text</span>-->
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label" for="txtVendor">Vendor Info</label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="txtVendor" name="txtVendor" class="form-control" placeholder="Enter vendor" value="{{ brand.vendorInfo }}"/>
+<!--                                                <span class="help-block">Please enter your email</span>-->
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">Status</label>
+                                            <div class="col-md-9">
+                                                <div class="checkbox">
+                                                    <label for="chkStatus">
+                                                        <input type="checkbox" id="chkStatus"  name="chkStatus" value="Active" {% if brand.isActive == True %}checked{% endif %} > Is Active
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group form-actions">
+                                            <div class="col-md-9 col-md-offset-3">
+                                                <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-angle-right"></i> Submit</button>
+                                                <button type="reset" class="btn btn-sm btn-warning"><i class="fa fa-repeat"></i> Reset</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <!-- END Basic Form Elements Content -->
+                                </div>
+                                <!-- END Basic Form Elements Block -->
+                            </div>
+                       </div>
+{% endblock %}
+
+
+{% block javascriptblock %}
+         <!-- Load and execute javascript code used only in this page -->
+        <script src="{%static 'back/' %}js/pages/formsGeneral.js"></script>
+        <script>$(function(){ FormsGeneral.init(); });</script>
+{% endblock %}

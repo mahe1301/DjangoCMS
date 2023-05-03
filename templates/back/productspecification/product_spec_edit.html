@@ -1,0 +1,98 @@
+{% extends 'back/base.html' %}
+{% load static %}
+
+{% block contentblock %}
+
+ <!-- Datatables Header -->
+                        <ul class="breadcrumb breadcrumb-top">
+                            <li>Product Specification</li>
+                            <li><a href="/b2n/product/specification/edit/{{ pk }}/">Edit</a></li>
+                        </ul>
+                        <!-- END Datatables Header -->
+
+ <!-- END Forms General Header -->
+
+                       <div class="row">
+                            <div class="col-md-12">
+                                <!-- Basic Form Elements Block -->
+                                <div class="block">
+                                    <!-- Basic Form Elements Title -->
+                                    <div class="block-title">
+                                        <div class="block-options pull-right">
+                                            <a href="javascript:void(0)" class="btn btn-alt btn-sm btn-default toggle-bordered enable-tooltip" data-toggle="button" title="Toggles .form-bordered class">No Borders</a>
+                                        </div>
+                                        <h2><strong>Edit</strong> Specification</h2>
+                                    </div>
+                                    <!-- END Form Elements Title -->
+
+                                    <!-- Basic Form Elements Content -->
+                                    <form action="{%url 'productSpecEdit' pk %}" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label" for="selectProduct">Product</label>
+                                            <div class="col-md-9">
+                                                <select id="selectProduct" name="product" class="form-control" size="1" style="width: 250px;">
+                                                    <option value="0">Please select</option>
+                                                    {% for j in pd %}
+                                                    <option value="{{j.id}}"  {% if productspec.product.id == j.id %}selected{% endif %} >{{j.name}}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label" for="txtName">Name</label>
+                                            <div class="col-md-9">
+                                                 <input type="text" id="txtName" name="specname" class="form-control" placeholder="Enter name " value="{{ productspec.name }}"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label" for="txtvalue">Description</label>
+                                            <div class="col-md-9">
+                                                 <textarea  id="txtvalue" name="specvalue" rows="9" class="form-control" placeholder="Description.." > {{  productspec.detail }}</textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label" for="selectCategory">Category</label>
+                                            <div class="col-md-9">
+                                                <select id="selectCategory" name="category" class="form-control" size="1" style="width: 250px;">
+                                                    <option value="0">Please select</option>
+                                                    {% for j in speccat %}
+                                                    <option value="{{j.id}}"  {% if productspec.category.id  == j.id %}selected{% endif %} >{{j.name}}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+                                         
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">Status</label>
+                                            <div class="col-md-9">
+                                                 <div class="checkbox">
+                                                     <label for="chkStatus">
+                                                        <input type="hidden" name="chkStatus" value="{% if productspec.isActive == True %}1{% else %}0{% endif %}" ><input type="checkbox" id="chkStatus" onclick="this.previousSibling.value=1-this.previousSibling.value" {% if productspec.isActive == True %}checked{% endif %}>Is Active
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group form-actions">
+                                            <div class="col-md-9 col-md-offset-3">
+                                                <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-angle-right"></i> Submit</button>
+                                                <button type="reset" class="btn btn-sm btn-warning"><i class="fa fa-repeat"></i> Reset</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <!-- END Basic Form Elements Content -->
+                                </div>
+                                <!-- END Basic Form Elements Block -->
+                            </div>
+                       </div>
+{% endblock %}
+
+
+{% block javascriptblock %}
+         <!-- Load and execute javascript code used only in this page -->
+        <script src="{%static 'back/' %}js/pages/formsGeneral.js"></script>
+        <script>$(function(){ FormsGeneral.init(); });</script>
+{% endblock %}

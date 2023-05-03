@@ -1,0 +1,70 @@
+{% extends 'back/base.html' %}
+{% load static %}
+
+{% block contentblock %}
+
+                        <ul class="breadcrumb breadcrumb-top">
+                            <li>Products</li>
+                            <li><a href="/b2n/purchaseorders/list">List</a></li>
+                        </ul>
+
+
+                        <!-- Datatables Content -->
+                        <div class="block full">
+                            <div class="block-title">
+                                <h2><strong>Order</strong> List</h2>
+                            </div>
+                            <div class="table-responsive">
+                                <table id="example-datatable" class="table table-vcenter table-condensed table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">ID</th>
+                                            <th>Payment Status</th>
+                                            <th>Payment Amount</th>
+                                            <th>Coupon Code</th>
+                                            <th>Coupon Amount</th>
+                                            <th>User Type</th>
+                                            <th>User</th>
+                                             <th>Bank Reference</th>
+                                            <th>Transaction Reference</th>
+                                            <th>Created Date</th>
+                                            <th>Modified Date</th>
+                                            <th class="text-center">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for od in orders %}
+                                        <tr>
+                                            <td class="text-center">{{ od.id }}</td>
+                                            <td>{{ od.payment_status }}</td>
+                                            <td>{{ od.payment_amount }}</td>
+                                            <td>{{ od.coupon_code }}</td>
+                                            <td>{{ od.coupon_amount }}</td>
+                                            <td>{{ od.userType }}</td>
+                                            <td>{{ od.user }}</td>
+                                            <td>{{ od.bank_reference }}</td>
+                                              <td>  {{ od.trans_ref }}</td>
+                                            <td>{{ od.created }}</td>
+
+                                            <td><span class="label label-info">{{ od.modified }}</span></td>
+                                            <td class="text-center">
+                                                <div class="btn-group">
+                                                    <a href="{%url 'orderDetail' pk=od.id %}" data-toggle="tooltip" title="View" class="btn btn-xs btn-default"><i class="fa fa-search"> View</i></a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- END Datatables Content -->
+
+{% endblock %}
+
+
+{% block javascriptblock %}
+    <!-- Load and execute javascript code used only in this page -->
+        <script src="{%static 'back/' %}js/pages/tablesDatatables.js"></script>
+        <script>$(function(){ TablesDatatables.init(4); });</script>
+{% endblock %}

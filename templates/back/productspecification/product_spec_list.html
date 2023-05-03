@@ -1,0 +1,65 @@
+{% extends 'back/base.html' %}
+{% load static %}
+
+{% block contentblock %}
+
+                        <ul class="breadcrumb breadcrumb-top">
+                            <li>Product Specification</li>
+                            <li><a href="/b2n/product/specification/list">List</a></li>
+                        </ul>
+
+
+                        <!-- Datatables Content -->
+                        <div class="block full">
+                            <div class="block-title">
+                                <h2><strong>Specification</strong> List</h2>
+                            </div>
+                            <div class="table-responsive">
+                                <table id="example-datatable" class="table table-vcenter table-condensed table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">ID</th>
+                                            <th>name</th>
+                                            <th>detail</th>
+                                            <th>category</th>
+                                            <th>product</th>
+                                            <th>created</th>
+                                            <th>modified</th>
+                                            <th>Is Active</th>
+                                            <th class="text-center">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for ps in productspecs %}
+                                        <tr>
+                                            <td class="text-center">{{ ps.id }}</td>
+                                            <td>{{ ps.name }}</td>
+                                            <td>{{ ps.detail }}</td>
+                                            <td>{{ ps.category.name}}</td>
+                                            <td>{{ ps.product.name }}</td>
+                                            <td>{{ ps.created }}</td>
+                                            <td>{{ ps.modified }}</td>
+                                            <td>{{ ps.isActive }}</td>
+
+                                            <td class="text-center">
+                                                 <div class="btn-group">
+                                                    <a href="{%url 'productSpecEdit' pk=ps.id %}" data-toggle="tooltip" title="Edit" class="btn btn-xs btn-default"><i class="fa fa-pencil"> Edit</i></a>
+                                                    <a href="{%url 'productSpecDelete' pk=ps.id %}" data-toggle="tooltip" title="Delete" class="btn btn-xs btn-danger"><i class="fa fa-times"> Delete</i></a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- END Datatables Content -->
+
+{% endblock %}
+
+
+{% block javascriptblock %}
+    <!-- Load and execute javascript code used only in this page -->
+        <script src="{%static 'back/' %}js/pages/tablesDatatables.js"></script>
+        <script>$(function(){ TablesDatatables.init(4); });</script>
+{% endblock %}

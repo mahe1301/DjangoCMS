@@ -1,0 +1,66 @@
+{% extends 'back/base.html' %}
+{% load static %}
+
+{% block contentblock %}
+
+                        <ul class="breadcrumb breadcrumb-top">
+                            <li>Users</li>
+                            <li><a href="/b2n/users/list">List</a></li>
+                        </ul>
+
+
+                        <!-- Datatables Content -->
+                        <div class="block full">
+                            <div class="block-title">
+                                <h2><strong>User</strong> List</h2>
+                            </div>
+                            <div class="table-responsive">
+                                <table id="example-datatable" class="table table-vcenter table-condensed table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">Name</th>
+                                            <th>Email</th>
+                                            <th>Phone</th>
+                                            <th>DOB</th>
+                                             <!-- <th>Created</th> -->
+                                            <!-- <th>Modified</th> -->
+                                            <th>Address 1</th>
+                                            <th>Address 2</th>
+                                            <th>Postal Code</th>
+                                             <th>City</th>
+                                            <th>Is Active</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for us in users %}
+                                        <tr>
+                                            <td>{{ us.first_name  }} {{ us.last_name}}</td>
+                                            <td>{{ us.email }}</td>
+                                            <td>{{ us.phone }}</td>
+                                            <td>{{ us.date_of_birth }}</td>
+                                            <!-- <td>{{ us.email }}</td> -->
+                                            <!-- <td>{{ us.created }}</td> -->
+                                            <!-- <td>{{ us.modified }}</td>                                -->
+                                           
+                                            <td>{{ us.address1 }}</td>
+                                            <td>{{ us.address2 }}</td>
+                                            <td>{{ us.postalcode }}</td>
+                                            <td>{{ us.city }}</td>
+                                            <td>{{ us.isActive }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- END Datatables Content -->
+
+{% endblock %}
+
+
+{% block javascriptblock %}
+    <!-- Load and execute javascript code used only in this page -->
+        <script src="{%static 'back/' %}js/pages/tablesDatatables.js"></script>
+        <script>$(function(){ TablesDatatables.init(4); });</script>
+{% endblock %}

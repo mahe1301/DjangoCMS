@@ -1,0 +1,172 @@
+{% extends 'back/base.html' %}
+{% load static %}
+
+{% block contentblock %}
+
+ <!-- Datatables Header -->
+                        <ul class="breadcrumb breadcrumb-top">
+                            <li>Products</li>
+                            <li><a href="/b2n/products/edit/{{ pk }}/">Edit</a></li>
+                        </ul>
+                        <!-- END Datatables Header -->
+
+ <!-- END Forms General Header -->
+
+                       <div class="row">
+                            <div class="col-md-12">
+                                <!-- Basic Form Elements Block -->
+                                <div class="block">
+                                    <!-- Basic Form Elements Title -->
+                                    <div class="block-title">
+                                        <div class="block-options pull-right">
+                                            <a href="javascript:void(0)" class="btn btn-alt btn-sm btn-default toggle-bordered enable-tooltip" data-toggle="button" title="Toggles .form-bordered class">No Borders</a>
+                                        </div>
+                                        <h2><strong>Edit</strong> Product</h2>
+                                    </div>
+                                    <!-- END Form Elements Title -->
+
+                                    <!-- Basic Form Elements Content -->
+                                    <form action="{%url 'productEdit' pk %}" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label" for="txtName">Name</label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="txtName" name="name" class="form-control" placeholder="Enter name " value="{{ product.name }}"/>
+<!--                                                <span class="help-block">This is a help text</span>-->
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label" for="txtDescription">Description</label>
+                                            <div class="col-md-9">
+                                                <textarea id="txtDescription" name="description" rows="9" class="form-control" placeholder="Description.." >{{ product.description }}</textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label" for="selectBrand">Brand</label>
+                                            <div class="col-md-9">
+                                                <select id="selectBrand" name="brands" class="form-control" size="1" style="width: 250px;">
+                                                    <option value="0">Please select</option>
+                                                    {% for j in bd %}
+                                                    <option value="{{j.id}}"  {% if product.brands.id == j.id %}selected{% endif %} >{{j.name}}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label" for="selectCategory">Category</label>
+                                            <div class="col-md-9">
+                                                <select id="selectCategory" name="category" class="form-control" size="1" style="width: 250px;">
+                                                    <option value="0">Please select</option>
+                                                    {% for i in cat %}
+                                                    <option value="{{i.id}}" {% if product.category.id == i.id %}selected{% endif %}  >{{i.name}}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                          <div class="form-group">
+                                            <label class="col-md-3 control-label" for="txtPrice">Price</label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="txtPrice" name="price" class="form-control" placeholder="Enter Price" value="{{ product.price }}"/>
+<!--                                                <span class="help-block">Please enter your email</span>-->
+                                            </div>
+
+                                        </div>
+                                             <div class="form-group">
+                                            <label class="col-md-3 control-label" for="txtPrice">Discount Price</label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="txtDiscountPrice" name="discountprice" class="form-control" placeholder="Enter Discount"  value="{{ product.discountprice }}" />
+<!--                                                <span class="help-block">Please enter your email</span>-->
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label" for="imageFile">Image</label>
+                                            <div class="col-md-9">
+                                                <input type="file" id="imageFile" name="picture"/>
+                                                {% if product.img != '' and product.img != None %}
+                                                <input type="hidden" name="chkPrevImage" value="0" ><input type="checkbox" id="chkPrevImgStatus" onclick="this.previousSibling.value=1-this.previousSibling.value"/> Current Image
+
+                                                <img style="display: inline-block; width:350px; height:300px;" src="{{product.img.url}}">
+                                                {% else %}
+                                                <input type="hidden" name="chkPrevImage" value="0" >
+                                                {% endif %}
+
+                                            </div>
+                                        </div>
+                                         <div class="form-group">
+                                            <label class="col-md-3 control-label" for="txtQuantity">Quantity</label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="txtQuantity" name="quantity" class="form-control" placeholder="Enter Quantity" value="{{ product.quantity }}"/>
+<!--                                                <span class="help-block">Please enter your email</span>-->
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">Status</label>
+                                            <div class="col-md-9">
+                                                 <div class="checkbox">
+<!--                                                    <label for="chkStatus">-->
+<!--                                                        <input type="checkbox" id="chkStatus" name="chkStatus" value="True" {% if product.isActive == True %}checked{% endif %}> Is Active-->
+<!--                                                    </label>-->
+                                                     <label for="chkStatus">
+
+                                                        <input type="hidden" name="chkStatus" value="{% if product.isActive == True %}1{% else %}0{% endif %}" ><input type="checkbox" id="chkStatus" onclick="this.previousSibling.value=1-this.previousSibling.value" {% if product.isActive == True %}checked{% endif %}>Is Active
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                         <div class="form-group">
+                                            <label class="col-md-3 control-label">Top Seller</label>
+                                            <div class="col-md-9">
+                                                 <div class="checkbox">
+
+                                                     <label for="chkTopSellerStatus">
+
+                                                        <input type="hidden" name="chkTopSellerStatus" value="{% if product.isTopSeller == True %}1{% else %}0{% endif %}" ><input type="checkbox" id="chkTopSellerStatus" onclick="this.previousSibling.value=1-this.previousSibling.value" {% if product.isTopSeller == True %}checked{% endif %}>Is Top Seller
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                         <div class="form-group">
+                                            <label class="col-md-3 control-label">Combo Product</label>
+                                            <div class="col-md-9">
+                                                 <div class="checkbox">
+
+                                                     <label for="chkComboStatus">
+
+                                                        <input type="hidden" name="chkComboStatus" value="{% if product.isComboProduct == True %}1{% else %}0{% endif %}" ><input type="checkbox" id="chkComboStatus" onclick="this.previousSibling.value=1-this.previousSibling.value" {% if product.isComboProduct == True %}checked{% endif %}>Is Combo
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">GST %</label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="txtGST" name="fgstPercent" class="form-control" placeholder="Enter GST %" value="{{ product.gstPercent }}"/>                                            
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group form-actions">
+                                            <div class="col-md-9 col-md-offset-3">
+                                                <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-angle-right"></i> Submit</button>
+                                                <button type="reset" class="btn btn-sm btn-warning"><i class="fa fa-repeat"></i> Reset</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <!-- END Basic Form Elements Content -->
+                                </div>
+                                <!-- END Basic Form Elements Block -->
+                            </div>
+                       </div>
+{% endblock %}
+
+
+{% block javascriptblock %}
+         <!-- Load and execute javascript code used only in this page -->
+        <script src="{%static 'back/' %}js/pages/formsGeneral.js"></script>
+        <script>$(function(){ FormsGeneral.init(); });</script>
+{% endblock %}

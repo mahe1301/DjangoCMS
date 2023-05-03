@@ -1,0 +1,1 @@
+from back2nature.wsgi import application

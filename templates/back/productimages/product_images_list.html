@@ -1,0 +1,61 @@
+{% extends 'back/base.html' %}
+{% load static %}
+
+{% block contentblock %}
+
+                        <ul class="breadcrumb breadcrumb-top">
+                            <li>Products</li>
+                            <li><a href="/b2n/productimages/list">List</a></li>
+                        </ul>
+
+
+                        <!-- Datatables Content -->
+                        <div class="block full">
+                            <div class="block-title">
+                                <h2><strong>Product Images</strong> List</h2>
+                            </div>
+                            <div class="table-responsive">
+                                <table id="example-datatable" class="table table-vcenter table-condensed table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">ID</th>
+<!--                                            <th class="text-center"><i class="gi gi-user"></i></th>-->
+                                            <th>Name</th>
+                                            <th>Description</th>
+                                            <th>Image</th>
+                                            <th>IsActive</th>
+                                            <th class="text-center">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for pdimg in productimages %}
+                                        <tr>
+                                            <td class="text-center">{{ pdimg.id}}</td>
+<!--                                            <td class="text-center"><img src="img/placeholders/avatars/avatar15.jpg" alt="avatar" class="img-circle"></td>-->
+                                            <td><a href="javascript:void(0)">{{ pdimg.product.name }}</a></td>
+                                            <td>{{ pdimg.description }}</td>
+                                            <td>{{ pdimg.ImageUrl }}</td>
+
+                                            <td><span class="label label-info">{{ pdimg.isActive }}</span></td>
+                                            <td class="text-center">
+                                                <div class="btn-group">
+                                                    <a href="{%url 'productImagesEdit' pk=pdimg.id %}" data-toggle="tooltip" title="Edit" class="btn btn-xs btn-default"><i class="fa fa-pencil"> Edit</i></a>
+                                                    <a href="{%url 'productImagesDelete' pk=pdimg.id %}" data-toggle="tooltip" title="Delete" class="btn btn-xs btn-danger"><i class="fa fa-times"> Delete</i></a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- END Datatables Content -->
+
+{% endblock %}
+
+
+{% block javascriptblock %}
+    <!-- Load and execute javascript code used only in this page -->
+        <script src="{%static 'back/' %}js/pages/tablesDatatables.js"></script>
+        <script>$(function(){ TablesDatatables.init(4); });</script>
+{% endblock %}

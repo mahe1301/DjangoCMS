@@ -1,0 +1,54 @@
+{% extends 'back/base.html' %}
+{% load static %}
+
+{% block contentblock %}
+
+                        <ul class="breadcrumb breadcrumb-top">
+                            <li>Subscription</li>
+                            <li><a href="/b2n/customer/subscription/list">List</a></li>
+                        </ul>
+
+
+                        <!-- Datatables Content -->
+                        <div class="block full">
+                            <div class="block-title">
+                                <h2><strong>Subscriber</strong> List</h2>
+                            </div>
+                            <div class="table-responsive">
+                                <table id="example-datatable" class="table table-vcenter table-condensed table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">ID</th>
+                                            <th>email</th>
+                                            <th>Created</th>
+                                            <th>Modified</th>
+                                            <th>Is Active</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for cs in custsubscribes %}
+                                        <tr>
+                                            <td class="text-center">{{ cs.id }}</td>
+                                            <td>{{ cs.email }}</td>
+                                            <td>{{ cs.created }}</td>
+                                            <td>{{ cs.modified }}</td>                               
+                                            <td>{{ cs.isActive }}</td>
+
+                                            
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- END Datatables Content -->
+
+{% endblock %}
+
+
+{% block javascriptblock %}
+    <!-- Load and execute javascript code used only in this page -->
+        <script src="{%static 'back/' %}js/pages/tablesDatatables.js"></script>
+        <script>$(function(){ TablesDatatables.init(4); });</script>
+{% endblock %}

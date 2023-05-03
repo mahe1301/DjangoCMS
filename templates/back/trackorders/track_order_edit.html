@@ -1,0 +1,95 @@
+{% extends 'back/base.html' %}
+{% load static %}
+
+{% block contentblock %}
+
+ <!-- Datatables Header -->
+                        <ul class="breadcrumb breadcrumb-top">
+                            <li>Track Orders</li>
+                            <li><a href="/b2n/trackorders/edit/{{ pk }}/">Edit</a></li>
+                        </ul>
+                        <!-- END Datatables Header -->
+
+ <!-- END Forms General Header -->
+
+                       <div class="row">
+                            <div class="col-md-12">
+                                <!-- Basic Form Elements Block -->
+                                <div class="block">
+                                    <!-- Basic Form Elements Title -->
+                                    <div class="block-title">
+                                        <div class="block-options pull-right">
+                                            <a href="javascript:void(0)" class="btn btn-alt btn-sm btn-default toggle-bordered enable-tooltip" data-toggle="button" title="Toggles .form-bordered class">No Borders</a>
+                                        </div>
+                                        <h2><strong>Edit</strong> Tracking Status</h2>
+                                    </div>
+                                    <!-- END Form Elements Title -->
+
+                                    <!-- Basic Form Elements Content -->
+                                    <form action="{%url 'trackOrderEdit' pk %}" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">Tracking Reference</label>
+                                            <div class="col-md-9">
+                                                 <p class="form-control-static">{{ trackOrder.tracking_reference }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label" for="txtComments">Comments</label>
+                                            <div class="col-md-9">
+                                                <textarea id="txtComments" name="comments" rows="9" class="form-control" placeholder="Comments.." >{{ trackOrder.Comments }}</textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label" for="selectStatus">Status</label>
+                                            <div class="col-md-9">
+                                                <select id="selectStatus" name="status" class="form-control" size="1" style="width: 250px;">
+                                                     <option value="0">Please select</option>
+                                                    {% for j in sl %}
+                                                    <option value="{{j}}" {% if trackOrder.status  == j %}selected{% endif %} >{{j}}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+                                          <div class="form-group">
+                                            <label class="col-md-3 control-label">Order ID</label>
+                                            <div class="col-md-9">
+                                               <p class="form-control-static">{{ trackOrder.order.id  }}</p>
+                                            </div>
+
+                                        </div>
+                                             <div class="form-group">
+                                            <label class="col-md-3 control-label">Order Payment Status</label>
+                                            <div class="col-md-9">
+                                                <p class="form-control-static">{{ trackOrder.order.payment_status  }}</p>
+                                            </div>
+
+                                        </div>
+
+
+
+{% if trackOrder.status  !=  'Dispatched' and trackOrder.status  !=  'Cancelled' and trackOrder.status  !=  'Delivered' and trackOrder.status  !=  'Cancellation Initiated'  %}
+
+
+                                        <div class="form-group form-actions">
+                                            <div class="col-md-9 col-md-offset-3">
+                                                <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-angle-right"></i> Submit</button>
+                                                <button type="reset" class="btn btn-sm btn-warning"><i class="fa fa-repeat"></i> Reset</button>
+                                            </div>
+                                        </div>
+                                        {% endif %}
+                                    </form>
+                                    <!-- END Basic Form Elements Content -->
+                                </div>
+                                <!-- END Basic Form Elements Block -->
+                            </div>
+                       </div>
+{% endblock %}
+
+
+{% block javascriptblock %}
+         <!-- Load and execute javascript code used only in this page -->
+        <script src="{%static 'back/' %}js/pages/formsGeneral.js"></script>
+        <script>$(function(){ FormsGeneral.init(); });</script>
+{% endblock %}

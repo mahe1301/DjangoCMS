@@ -1,0 +1,62 @@
+{% extends 'back/base.html' %}
+{% load static %}
+
+{% block contentblock %}
+
+                        <ul class="breadcrumb breadcrumb-top">
+                            <li>Order Cancellation Request</li>
+                            <li><a href="/b2n/order/cancellation/requests/cancelled">Cancelled</a></li>
+                        </ul>
+
+
+                        <!-- Datatables Content -->
+                        <div class="block full">
+                            <div class="block-title">
+                                <h2><strong>Order Cancellation Request</strong> List</h2>
+                            </div>
+                            <div class="table-responsive">
+                                <table id="example-datatable" class="table table-vcenter table-condensed table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">ID</th>
+                                            <th>Refund Id</th>
+                                            <th>Refund Status</th>
+                                            <th>Comments</th>
+                                            <th>Order Id</th>
+                                            <th>Order Status</th>
+                                            <th>Cancellation Request Status</th>
+                                            <th class="text-center">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for oc in orderscancellations %}
+                                        <tr>
+                                            <td class="text-center">{{ oc.id }}</td>
+                                            <td>{{ oc.refund_id }}</td>
+                                            <td>{{ oc.refund_status }}</td>
+                                            <td>{{ oc.comment }}</td>
+                                            <td>{{ oc.order.id }}</td>
+                                            <td>{{ oc.order.payment_status}}</td>
+                                            <td>{{ oc.request_status }}</td>
+
+                                            <td class="text-center">
+                                                <div class="btn-group">
+                                                    <a href="{%url 'orderCancelRequestEdit' pk=oc.id %}" data-toggle="tooltip" title="View" class="btn btn-xs btn-default"><i class="fa fa-search"> View</i></a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- END Datatables Content -->
+
+{% endblock %}
+
+
+{% block javascriptblock %}
+    <!-- Load and execute javascript code used only in this page -->
+        <script src="{%static 'back/' %}js/pages/tablesDatatables.js"></script>
+        <script>$(function(){ TablesDatatables.init(4); });</script>
+{% endblock %}

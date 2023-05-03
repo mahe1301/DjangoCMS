@@ -1,0 +1,7 @@
+# DO NOT REMOVE. CLOUDLINUX PASSENGER CONFIGURATION BEGIN
+PassengerAppRoot "/home/endingdb/b2n_live"
+PassengerBaseURI "/"
+PassengerPython "/home/endingdb/virtualenv/b2n_live/3.7/bin/python"
+PassengerAppLogFile "/home/endingdb/logs/passengar.log"
+# DO NOT REMOVE. CLOUDLINUX PASSENGER CONFIGURATION END
+#DirectoryIndex index.html
